@@ -1,0 +1,126 @@
+/* ======================
+   Global Styles
+====================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #A3C1AD;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+
+h1 {
+    margin-bottom: 30px;
+}
+
+/* ======================
+   Grid Container
+====================== */
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;            
+    gap: 20px;                 
+    justify-content: center;    
+    max-width: 1200px;
+    margin: 0 auto;             
+}
+
+/* ======================
+   Mini App Card
+====================== */
+.mini-app {
+    flex: 0 0 23%;              
+    min-width: 220px;          
+    background: #99BADD;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* ======================
+   Output Section
+====================== */
+.output {
+    margin-top: 10px;
+}
+
+.output img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* ======================
+   Input Fields
+====================== */
+input {
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+/* ======================
+   Buttons
+====================== */
+button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #0000FF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2929cc;
+}
+
+/* ======================
+   Responsive Layout
+====================== */
+@media (max-width: 900px) {
+    .mini-app {
+        flex: 0 0 45%;
+    }
+}
+
+@media (max-width: 500px) {
+    .mini-app {
+        flex: 0 0 90%;
+    }
+}
+
+/* ======================
+   Currency App Specific
+====================== */
+#currency-app select {
+    margin-right: 10px;   
+    margin-bottom: 8px;   
+}
+
+#currency-app button {
+    margin-left: 10px;   
+    margin-top: 4px;    
+    padding: 6px 12px;   
+    cursor: pointer;
+}
+
+/* ======================
+   Dog & Cat Image Styling
+====================== */
+#dog-output img,
+#cat-output img {
+    width: 250px;        
+    height: 250px;        
+    object-fit: cover;    
+    border-radius: 8px;   
+    display: block;
+    margin: 0 auto;       
+}

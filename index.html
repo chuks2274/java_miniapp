@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Apps Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Importing the Roboto font from Google Fonts for consistent typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Mini Apps Dashboard</h1>
+<!-- Mini app card for displaying a random dog image with a button to fetch it -->
+  <div class="grid-container">
+    <!-- Existing Mini Apps -->
+    <div class="mini-app" id="dog-app">
+      <h2>🐶 Random Dog</h2>
+      <button onclick="fetchDog()">Get Dog</button>
+      <div class="output" id="dog-output"></div>
+    </div>
+<!-- Mini app card for displaying a random cat image with a button to fetch it -->
+    <div class="mini-app" id="cat-app">
+      <h2>🐱 Random Cat</h2>
+      <button onclick="fetchCat()">Get Cat</button>
+      <div class="output" id="cat-output"></div>
+    </div>
+<!-- Mini app card for fetching and displaying weather information based on a city input -->
+    <div class="mini-app" id="weather-app">
+      <h2>🌤️ Weather</h2>
+      <input type="text" id="city-input" placeholder="Enter city" />
+      <button onclick="fetchWeather()">Get Weather</button>
+      <div class="output" id="weather-output"></div>
+    </div>
+<!-- Mini app for converting currencies between selected options -->
+  <div class="mini-app" id="currency-app">
+  <h2>💱 Currency</h2>
+  
+  <input 
+    type="number" 
+    id="amount" 
+    placeholder="Enter amount" 
+    min="0" 
+    step="any" 
+    style="width: 100%; max-width: 150px; margin-bottom: 8px;"
+  />
+  
+  <select id="from-currency">
+    <option value="" disabled selected>From</option>
+    <option value="USD">USD - US Dollar</option>
+    <option value="EUR">EUR - Euro</option>
+    <option value="GBP">GBP - British Pound</option>
+    <option value="JPY">JPY - Japanese Yen</option>
+    <option value="AUD">AUD - Australian Dollar</option>
+    <option value="CAD">CAD - Canadian Dollar</option>
+    <option value="CHF">CHF - Swiss Franc</option>
+    <option value="CNY">CNY - Chinese Yuan</option>
+    <option value="NZD">NZD - New Zealand Dollar</option>
+  </select>
+  
+  <select id="to-currency">
+    <option value="" disabled selected>To</option>
+    <option value="USD">USD - US Dollar</option>
+    <option value="EUR">EUR - Euro</option>
+    <option value="GBP">GBP - British Pound</option>
+    <option value="JPY">JPY - Japanese Yen</option>
+    <option value="AUD">AUD - Australian Dollar</option>
+    <option value="CAD">CAD - Canadian Dollar</option>
+    <option value="CHF">CHF - Swiss Franc</option>
+    <option value="CNY">CNY - Chinese Yuan</option>
+    <option value="NZD">NZD - New Zealand Dollar</option>
+  </select>
+  
+  <button onclick="fetchCurrency()">Get Rate</button>
+  
+  <div class="output" id="currency-output"></div>
+</div>
+<!-- Mini app for displaying trending movies fetched from TMDb API -->
+    <div class="mini-app" id="movie-app">
+      <h2>🎬 Trending Movies</h2>
+      <button onclick="fetchMovies()">Show Movies</button>
+      <div class="output" id="movie-output"></div>
+    </div>
+<!-- Mini app for fetching and displaying GitHub user information -->
+    <div class="mini-app" id="github-app">
+      <h2>🧑‍💻 GitHub User</h2>
+      <input type="text" id="github-input" placeholder="Enter username" />
+      <button onclick="fetchGithubUser()">Search</button>
+      <div class="output" id="github-output"></div>
+    </div>
+<!-- Mini app for fetching and displaying a random joke -->
+    <div class="mini-app" id="joke-app">
+      <h2>😂 Random Joke</h2>
+      <button onclick="fetchJoke()">Tell Joke</button>
+      <div class="output" id="joke-output"></div>
+    </div>
+<!-- Mini app for fetching and displaying a random user profile -->
+    <div class="mini-app" id="randomuser-app">
+      <h2>👤 Random User</h2>
+      <button onclick="fetchRandomUser()">Get User</button>
+      <div class="output" id="randomuser-output"></div>
+    </div>
+<!-- Mini app for fetching and displaying a random piece of advice -->
+    <div class="mini-app" id="advice-app">
+      <h2>💡Advice</h2>
+      <button onclick="fetchAdvice()">Get Advice</button>
+      <div class="output" id="advice-output"></div>
+    </div>
+<!-- Mini app for fetching and displaying trivia about a random number -->
+    <div class="mini-app" id="number-app">
+      <h2>🔢 Number Trivia</h2>
+      <button onclick="fetchNumberTrivia()">Get Trivia</button>
+      <div class="output" id="number-output"></div>
+    </div>
+<!-- Mini app for fetching and displaying a random quote -->
+    <div class="mini-app" id="quote-app">
+      <h2>💬 Random Quote</h2>
+      <button onclick="handleQuoteButton()">Get Quote</button>
+      <div class="output" id="quote-output"></div>
+    </div>
+<!-- Mini app for fetching and displaying a random recent SpaceX launch -->
+    <div class="mini-app" id="spacex-app">
+  <h2>🚀 SpaceX Latest Launch</h2>
+  <button onclick="fetchRandomLaunch()">Show Random Launch</button>
+  <div class="output" id="spacex-output"></div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
