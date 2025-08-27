@@ -289,55 +289,48 @@ async function fetchNumberTrivia() {
   }
 }
 
-// Initialize empty quotes array and a flag to track if quotes are loaded
+// Initialize an empty array to hold quotes fetched from the API
 let quotes = [];
-let quotesLoaded = false;
+// Fetch a random quote from the API and display it with a loading message first
+async function fetchAndShowQuote() {
+    const output = document.getElementById('quote-output');
+    output.innerHTML = 'Fetching a random quote...';
 
-// Fetches all quotes from ZenQuotes API and stores them locally
-async function fetchAllQuotes() {
-  // Get the output element and show a loading message while fetching quotes
-  const output = document.getElementById('quote-output');
-  output.innerHTML = 'Loading quotes...';
+    try {
+        // Fetch quotes from ZenQuotes API using a proxy (to bypass CORS restrictions)
+        const proxy = 'https://api.allorigins.win/raw?url=';
+        const target = encodeURIComponent('https://zenquotes.io/api/quotes');
+        const res = await fetch(proxy + target);
 
-  try {
-    // Set up a proxy URL to avoid CORS issues and encode the target quotes API URL
-    const proxyUrl = 'https://api.allorigins.win/raw?url=';
-    const targetUrl = encodeURIComponent('https://zenquotes.io/api/quotes');
+        if (!res.ok) throw new Error(`Network error: ${res.status}`);
 
-    // Fetch quotes from the target API via the proxy and check for network errors
-    const res = await fetch(proxyUrl + targetUrl);
-    if (!res.ok) throw new Error('Network error');
+        const data = await res.json();
 
-    // Parse the JSON response, mark quotes as loaded, and show a message to the user
-    quotes = await res.json();
-    quotesLoaded = true;
-    output.innerHTML = 'Quotes loaded. Click "Get Quote" again to see a random quote.';
-  } catch (err) {
-    output.innerHTML = 'Failed to fetch quotes.';
-    console.error(err);
-  }
+        // Check if the API returned a valid array of quotes with required fields; if not, throw an error
+        if (!Array.isArray(data) || data.length === 0 || !data[0].q || !data[0].a) {
+            throw new Error('API returned invalid data or rate-limited.');
+        }
+
+        // Pick a random quote from the fetched data
+        const randomIndex = Math.floor(Math.random() * data.length);
+        // Store the selected random quote
+        const q = data[randomIndex];
+
+        // Display the quote and author in the output div
+        output.innerHTML = `"${q.q}" — <em>${q.a}</em>`;
+    } catch (err) {
+        console.error('Quote fetch error:', err);
+        output.innerHTML = 'Failed to fetch quote. Retrying in 10 seconds...';
+        // Automatically fetch a new quote every 10 seconds
+        setTimeout(fetchAndShowQuote, 10000);
+    }
 }
-// Displays a random quote from loaded quotes or fetches quotes if not loaded
-function showRandomQuote() {
-  // Get the output element and check if any quotes are loaded; show a message and stop if none
-  const output = document.getElementById('quote-output');
-  if (quotes.length === 0) {
-    output.innerHTML = 'No quotes loaded yet.';
-    return;
-  }
-  // Pick a random quote from the loaded quotes and display it in the output element
-  const randomIndex = Math.floor(Math.random() * quotes.length);
-  const q = quotes[randomIndex];
-  output.innerHTML = `"${q.q}" — <em>${q.a}</em>`;
-}
-// Handle the quote button click: fetch all quotes if not loaded, otherwise show a random quote
+
+// Trigger fetching and displaying a new quote when button is clicked
 function handleQuoteButton() {
-  if (!quotesLoaded) {
-    fetchAllQuotes();
-  } else {
-    showRandomQuote();
-  }
+    fetchAndShowQuote();
 }
+
 // Fetches and displays a random recent SpaceX launch
 async function fetchRandomLaunch() {
   // Get the output element and show a loading message while fetching SpaceX data
